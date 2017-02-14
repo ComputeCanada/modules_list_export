@@ -1,0 +1,36 @@
+To generate the MediaWiki output run:
+  xsltproc cq-xml-modules-to-mediawiki.xsl example.input.modules_briaree.xml
+
+-----
+
+Example input XML is:
+  https://wiki.calculquebec.ca/modules_briaree.xml
+
+Example final MediaWiki is:
+  https://docs-dev.computecanada.ca/wiki/BriareeModules
+
+Original automated MediaWiki page:
+
+{{#get_web_data:
+url=https://wiki.calculquebec.ca/modules_briaree.xml
+|format=xml
+|data=package=module_name,name=app_name,version=version,help=help,prereq=prereq,conflict=conflict,whatis=whatis,site=site,autoload=module-load
+}}
+
+
+{| class="wikitable" style="width:80%"
+! align="center" | Module
+! align="center" | Nom
+! align="center" | Version
+! align="center" | Description
+{{#for_external_table:<nowiki/>
+{{!}}-
+{{!}} align="center" {{!}} {{{package}}}
+{{!}} align="center" {{!}} [{{{site}}} {{{name}}}]
+{{!}} align="center" {{!}} {{{version}}}
+{{!}} {{{help}}} <br/> '''Prérequis :''' {{{prereq}}}<br/> '''Conflits :''' {{{conflict}}} <br/> '''Chargement automatique :''' {{{autoload}}} <br/>
+'''Description complète :''' <br/>
+<div class="mw-collapsible mw-collapsed" style="white-space: pre-line;">{{{whatis}}}</div>
+
+}}
+|}
