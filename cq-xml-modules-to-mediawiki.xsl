@@ -7,11 +7,9 @@
 <xsl:output method="text" />
 
 <xsl:template match="/">
-  <xsl:text>Modules&#x0D;&#x0A;</xsl:text>
-
   <xsl:text>{| class="wikitable" style="width:80%"&#x0D;&#x0A;</xsl:text>
   <xsl:text>! align="center" | Module&#x0D;&#x0A;</xsl:text>
-  <xsl:text>! align="center" | Nom&#x0D;&#x0A;</xsl:text>
+  <xsl:text>! align="center" | Name&#x0D;&#x0A;</xsl:text>
   <xsl:text>! align="center" | Version&#x0D;&#x0A;</xsl:text>
   <xsl:text>! align="center" | Description&#x0D;&#x0A;</xsl:text>
   <xsl:apply-templates select="root/module" />
