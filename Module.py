@@ -85,7 +85,17 @@ class Module:
 
         self.dict['module-whatis'] = fullstrip('\n'.join(self.dict['module-whatis']))
         if not self.dict['module-whatis']:
-            self.dict['module-whatis'] = '-'
+            tmp = re.split("\. ",self.help,1)
+            if len(tmp) == 2:
+                self.help = tmp[0].strip(" -")
+                self.dict['module-whatis'] = tmp[1].strip(" -")
+            else:
+                tmp = re.split(" - ",self.help,1)
+                if len(tmp) == 2:
+                    self.help = tmp[0].strip(" -")
+                    self.dict['module-whatis'] = tmp[1].strip(" -")
+                else:
+                    self.dict['module-whatis'] = "-"
 
         name_split = self.name.split('/')
         if name_split is not None and len(name_split) >= 2:

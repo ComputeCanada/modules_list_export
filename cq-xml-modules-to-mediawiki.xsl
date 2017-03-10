@@ -45,13 +45,16 @@
   <xsl:text>'''Prerequisites :''' </xsl:text>
   <xsl:value-of select="normalize-space(./prereq)" />
 
+  <!--
   <xsl:call-template name="output-line-break" />
   <xsl:text>'''Conflicts :''' </xsl:text>
   <xsl:value-of select="normalize-space(./conflict)" />
+  -->
 
-  <xsl:call-template name="output-line-break" />
+  <!--  <xsl:call-template name="output-line-break" />
   <xsl:text>'''Load :''' </xsl:text>
   <xsl:value-of select="normalize-space(./autoload)" />
+  -->
 
   <xsl:call-template name="output-line-break" />
   <xsl:text>'''Description:''' </xsl:text>
