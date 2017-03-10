@@ -69,18 +69,45 @@ def LmodModuleList(paths):
     output = pexpect.run(MODULE_COMMAND + ' ' + string.join(paths,':'))
     import json
     output_js = json.loads(output)
-    for elem in output_js:
-        for v in elem["versions"]:
-            name = v["full"]
-            help = "-"
-            prereq = "-"
-            if v.has_key("help"):
-                help = v["help"]
-            if v.has_key("parent"):
-                prereq = string.join(v["parent"]," or ").replace("default:","").replace("default","").replace(":"," and ")
-            newModule = Module(name,help,"-",prereq)
-            if newModule.version[0] != ".":
-                moduleList.append(newModule)
+    if "jsonSoftwarePage" in MODULE_COMMAND:
+        for elem in output_js:
+            for v in elem["versions"]:
+                name = v["full"]
+                help = "-"
+                prereq = "-"
+                if v.has_key("help"):
+                    help = v["help"]
+                if v.has_key("parent"):
+                    prereq = string.join(v["parent"]," or ").replace("default:","").replace("default","").replace(":"," and ")
+                newModule = Module(name,help,"-",prereq)
+                if newModule.version[0] != ".":
+                    moduleList.append(newModule)
+    elif "spider-json" in MODULE_COMMAND:
+#        print(str(output_js))
+        for module_name in output_js:
+            data = output_js[module_name]
+            for path in data:
+                module_data = data[path]
+#                print(str(module_data))
+                if module_data.has_key("fullName"):
+                    name = module_data["fullName"]
+                help = "-"
+                prereq = "-"
+                if module_data.has_key("Description"):
+                    help = module_data["Description"]
+                if module_data.has_key("parentAA"):
+                    prereq = string.join(module_data["parentAA"][0]," and ")
+                newModule = Module(name,help,"-",prereq)
+                if newModule.version[0] != ".":
+                    found = False
+                    for n,m in enumerate(moduleList):
+                        if m.name == newModule.name:
+                            newModule = Module(name,help,"-",m.prereq + " or " + prereq)
+                            moduleList[n] = newModule
+                            found = True
+                            break
+                    if not found:
+                        moduleList.append(newModule)
 
     return moduleList
 
