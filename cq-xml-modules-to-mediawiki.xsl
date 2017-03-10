@@ -7,7 +7,7 @@
 <xsl:output method="text" />
 
 <xsl:template match="/">
-  <xsl:text>BriareeModules&#x0D;&#x0A;</xsl:text>
+  <xsl:text>Modules&#x0D;&#x0A;</xsl:text>
 
   <xsl:text>{| class="wikitable" style="width:80%"&#x0D;&#x0A;</xsl:text>
   <xsl:text>! align="center" | Module&#x0D;&#x0A;</xsl:text>
