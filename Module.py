@@ -82,6 +82,12 @@ class Module:
         
         if not self.dict["prereq"] and self.prereq:
             self.dict["prereq"] = self.prereq
+        
+        if self.show:
+            self.site = re.findall('https*://[^ \t\n\r]*',self.show)
+        else:
+            self.site = re.findall('https*://[^ \t\n\r]*',self.help)
+
 
         self.dict['module-whatis'] = fullstrip('\n'.join(self.dict['module-whatis']))
         if not self.dict['module-whatis']:
@@ -114,11 +120,6 @@ class Module:
             self.version = '-'
             self.app_name = self.name
         
-        if self.show:
-            self.site = re.findall('https*://[^ \t\n\r]*',self.show)
-        else:
-            self.site = re.findall('https*://[^ \t\n\r]*',self.help)
-
         if self.site is not None and len(self.site) >= 1:
             self.site = self.site[0]
         else:
