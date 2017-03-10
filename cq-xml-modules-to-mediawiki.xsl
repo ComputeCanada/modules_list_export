@@ -44,19 +44,19 @@
   <xsl:value-of select="normalize-space(./help)" />
 
   <xsl:call-template name="output-line-break" />
-  <xsl:text>'''Prérequis :''' </xsl:text>
+  <xsl:text>'''Prerequisites :''' </xsl:text>
   <xsl:value-of select="normalize-space(./prereq)" />
 
   <xsl:call-template name="output-line-break" />
-  <xsl:text>'''Conflits :''' </xsl:text>
+  <xsl:text>'''Conflicts :''' </xsl:text>
   <xsl:value-of select="normalize-space(./conflict)" />
 
   <xsl:call-template name="output-line-break" />
-  <xsl:text>'''Chargement automatique :''' </xsl:text>
+  <xsl:text>'''Load :''' </xsl:text>
   <xsl:value-of select="normalize-space(./autoload)" />
 
   <xsl:call-template name="output-line-break" />
-  <xsl:text>'''Description complète :''' </xsl:text>
+  <xsl:text>'''Description:''' </xsl:text>
   <xsl:text>&lt;div class="mw-collapsible mw-collapsed" style="white-space: pre-line;"&gt;</xsl:text>
     <xsl:value-of select="normalize-space(./whatis)" />
   <xsl:text>&lt;/div&gt;</xsl:text>
